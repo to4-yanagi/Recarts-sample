@@ -1,6 +1,13 @@
 import React from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, ReferenceDot, ReferenceArea
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ReferenceDot,
+  ReferenceArea
 } from 'recharts';
 import styled from 'styled-components'
 
@@ -18,8 +25,11 @@ const Wrapper = styled.section`
 `;
 
 const Inner = styled.section`
-  width: 900px;
+  width: 80%;
+  max-width: 900px;
+  height: 400px;
   margin: 50px auto;
+  padding: 30px;
   box-shadow: 0px 3px 6px #2c28281c;
   border-radius: 4px;
 `;
@@ -28,26 +38,24 @@ const Inner = styled.section`
 const App = () => (
   <Wrapper>
     <Inner>
-      <AreaChart
-        width={800}
-        height={400}
-        data={data}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="score" />
-        <YAxis dataKey="count" axisLine={false} tickLine={false} tick={true} />
-        <Area
-          type="natural"
-          dataKey="count"
-          stroke="#178BCA"
-          strokeWidth={5}
-          fill="#178BCA"
-          fillOpacity={0.2}
-        />
-        <ReferenceDot x={15} y={550} stroke="red" fill="red" onMouseOver={() => console.log("aaa")} />
-        <ReferenceArea x1={1} x2={4} stroke="red" strokeOpacity={0.3} fill="#FFF" label="Iron" />
-        <ReferenceArea x1={4} x2={15} stroke="blue" strokeOpacity={0.3} fill="#FFF" label={"Bronze"} />
-      </AreaChart>
+      <ResponsiveContainer>
+        <AreaChart data={data} >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="score" axisLine={false} tickLine={false} tick={false} />
+          <YAxis dataKey="count" axisLine={false} tickLine={false} tick={false} />
+          <Area
+            type="natural"
+            dataKey="count"
+            stroke="#178BCA"
+            strokeWidth={5}
+            fill="#178BCA"
+            fillOpacity={0.2}
+          />
+          <ReferenceDot x={15} y={550} stroke="red" fill="red" onMouseOver={() => console.log("aaa")} />
+          <ReferenceArea x1={1} x2={4} stroke="red" strokeOpacity={0.3} fill="#FFF" label="Iron" />
+          <ReferenceArea x1={4} x2={15} stroke="blue" strokeOpacity={0.3} fill="#FFF" label={"Bronze"} />
+        </AreaChart>
+      </ResponsiveContainer>
     </Inner>
   </Wrapper>
 );
